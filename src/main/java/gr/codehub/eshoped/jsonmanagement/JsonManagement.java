@@ -4,7 +4,7 @@
 
 package gr.codehub.eshoped.jsonmanagement;
 
-import gr.codehub.eshoped.jsonmanagement.service.UrlRader;
+import gr.codehub.eshoped.jsonmanagement.service.UrlReader;
 import java.io.IOException;
 
 /**
@@ -14,7 +14,14 @@ import java.io.IOException;
 public class JsonManagement {
 
     public static void main(String[] args) throws IOException, InterruptedException {
+        long startTime = System.currentTimeMillis();
+        
         System.out.println("Hello World!");
-        UrlRader.Reader();
+        UrlReader.Reader();
+        
+        long endTime = System.currentTimeMillis();
+        
+        System.out.println("Total time = " + (endTime-startTime) /1000. + " sec");
+        
     }
 }

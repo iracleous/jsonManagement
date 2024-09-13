@@ -12,7 +12,7 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.util.HashSet;
+import java.util.HashMap;
 
 /**
  *
@@ -28,9 +28,12 @@ public class UrlRader {
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
         String data =  response.body();
         String lines[] = data.split("\n");
-        HashSet<String> plays = new HashSet<>();
-        for(String line:lines)
-            plays.add( lineToJson(line));
+        HashMap<String, Integer> plays = new HashMap<>();
+        for(String line:lines){ 
+            String play_name = lineToJson(line);
+            if (play_name != null)
+                plays.put(play_name, plays.getOrDefault(play_name, 0) + 1);
+        }
         
         System.out.println(lines.length);
         System.out.println(plays.size());
